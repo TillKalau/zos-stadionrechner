@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#27475e">
+  <meta name="description" content="ZOS-Stadionrechner – Break-even-Rechner für Stadionausbauten.">
+  <title>ZOS-Stadionrechner</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/loader.css">
+</head>
+<body>
+  <main class="app-shell" aria-label="ZOS-Stadionrechner">
+    <iframe
+      id="zos-app"
+      class="app-frame"
+      src="app/"
+      title="ZOS-Stadionrechner"
+      allow="clipboard-read; clipboard-write"
+    ></iframe>
+
+    <section id="loading-overlay" class="loading-overlay" aria-live="polite" aria-busy="true">
+      <div class="top-line" aria-hidden="true"></div>
+      <div class="loader-card">
+        <div class="stadium-mark" aria-hidden="true">
+          <svg viewBox="0 0 180 112" role="img">
+            <path class="stadium-outer" d="M18 64c0-30 32-51 72-51s72 21 72 51-32 35-72 35S18 94 18 64Z"/>
+            <path class="stadium-inner" d="M44 63c0-15 20-25 46-25s46 10 46 25-20 18-46 18-46-3-46-18Z"/>
+            <path class="field" d="M62 55h56v23H62z"/>
+            <path class="field-line" d="M90 55v23M62 66.5h56"/>
+            <circle class="field-line" cx="90" cy="66.5" r="6"/>
+          </svg>
+        </div>
+
+        <h1>ZOS-<span>Stadionrechner</span></h1>
+        <p id="loading-status">Stadiondaten werden vorbereitet …</p>
+
+        <div class="progress-track" aria-hidden="true">
+          <div class="progress-bar"></div>
+        </div>
+
+        <div class="loader-meta">
+          <span>Break-even-Simulation</span>
+          <span>läuft lokal im Browser</span>
+        </div>
+      </div>
+      <noscript>Für den Stadionrechner muss JavaScript aktiviert sein.</noscript>
+    </section>
+  </main>
+  <script src="assets/loader.js"></script>
+</body>
+</html>
