@@ -16,7 +16,8 @@
     "Jesse zählt gerade Geld...",
     "Olof verpflichtet gerade einen Schweden...",
     "BlauWeiss_4630 gewinnt gerade ein Spiel...",
-    "Phaeton und Pape machen gerade den Deal des Jahres..."
+    "Phaeton und Pape machen gerade den Deal des Jahres...",
+"Max arbeitet gerade mit KI..."
   ];
 
   const setStatus = (text) => {
