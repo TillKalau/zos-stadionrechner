@@ -2,13 +2,13 @@
 
 ## Inhalt
 
-* `src/app.R` – deine Shiny-App
-* `build.R` – erzeugt den Shinylive-Export
-* `site/index.html` – vorgeschalteter Ladebildschirm
-* `site/assets/` – Design, Ladeanimation und Favicon
-* `site/app/` – wird beim Build automatisch erzeugt
+- `src/app.R` – deine Shiny-App
+- `build.R` – erzeugt den Shinylive-Export
+- `site/index.html` – vorgeschalteter Ladebildschirm
+- `site/assets/` – Design, Ladeanimation und Favicon
+- `site/app/` – wird beim Build automatisch erzeugt
 
-## 1\. Einmalig in R installieren    
+## 1. Einmalig in R installieren
 
 ```r
 install.packages("shinylive")
@@ -17,10 +17,10 @@ install.packages("shinylive")
 Die von der App benötigten Pakete sind:
 
 ```r
-install.packages(c("shiny", "ggplot2", "scales"))
+install.packages(c("shiny", "ggplot2", "scales", "S7"))
 ```
 
-## 2\. Export erstellen
+## 2. Export erstellen
 
 Öffne das Projekt in RStudio, setze den Projektordner als Arbeitsverzeichnis und führe aus:
 
@@ -30,7 +30,7 @@ source("build.R")
 
 Danach liegt die vollständige Website im Ordner `site`.
 
-## 3\. Lokal testen
+## 3. Lokal testen
 
 Nicht per Doppelklick öffnen, sondern über einen lokalen Webserver. Zum Beispiel in R:
 
@@ -44,15 +44,14 @@ Dann im Browser öffnen:
 http://127.0.0.1:8000
 ```
 
-## 4\. GitHub und Cloudflare Pages
+## 4. GitHub und Cloudflare Pages
 
 Am einfachsten lädst du den **Inhalt des Ordners `site`** in dein GitHub-Repository hoch. Dabei muss `index.html` direkt auf der obersten Ebene des Repositorys liegen.
 
 Cloudflare Pages:
 
-* Framework-Voreinstellung: `None`
-* Build-Befehl: leer
-* Build-Ausgabeverzeichnis: `/`
+- Framework-Voreinstellung: `None`
+- Build-Befehl: leer
+- Build-Ausgabeverzeichnis: `/`
 
 Bei Änderungen an `app.R` erneut `source("build.R")` ausführen und den aktualisierten `site/app`-Ordner zu GitHub hochladen.
-

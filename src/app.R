@@ -1,10 +1,12 @@
-if (FALSE) {
-  library(S7)
-}
-
 library(shiny)
 library(ggplot2)
 library(scales)
+
+# ggplot2 4.x benötigt S7 im WebAssembly-Export.
+# Die unerreichbare Zeile sorgt dafür, dass Shinylive das Paket mit exportiert.
+if (FALSE) {
+  library(S7)
+}
 
 # ------------------------------------------------------------
 # ZOS Stadionausbau – Break-even-Rechner
@@ -251,8 +253,10 @@ ui <- fluidPage(
       }
 
       .plot-box {
-        padding: 8px 10px 0;
-        min-height: 390px;
+        height: 300px;
+        min-height: 0;
+        padding: 5px 8px 0;
+        overflow: hidden;
       }
 
       .calculation-note {
@@ -305,6 +309,10 @@ ui <- fluidPage(
 
         .unit {
           text-align: left;
+        }
+
+        .plot-box {
+          height: 280px;
         }
       }
     "))
@@ -406,14 +414,13 @@ ui <- fluidPage(
 
           div(
             class = "plot-box",
-            plotOutput("break_even_plot", height = "375px")
+            plotOutput("break_even_plot", height = "290px")
           )
         ),
 
         div(
           class = "calculation-note",
-          "Berechnung: neue Plätze × Auslastung × Heimspiele × Einnahme pro Zuschauer. ",
-          "Zinsen, laufende Zusatzkosten, Preisänderungen und Inflation werden nicht berücksichtigt."
+          "Berechnung: neue Plätze × Auslastung × Heimspiele × Einnahme pro Zuschauer."
         )
       )
     )
@@ -501,8 +508,8 @@ server <- function(input, output, session) {
       class = "result-text",
       HTML(
         paste0(
-          "Die Investition von <strong>", format_pound(input$baukosten),
-          "</strong> erreicht den rechnerischen Break-even nach <strong>",
+          "Basierend auf den hinterlegten Eingaben erreicht die Investition von <strong>", format_pound(input$baukosten),
+          "</strong> den rechnerischen Break-even nach <strong>",
           format_number_de(x$break_even, 2), " Saisons</strong>. ",
           "Damit ist der Stadionausbau nach <strong>", x$volle_saisons,
           " vollen ", saison_wort, "</strong> erstmals vollständig refinanziert. ",
@@ -598,7 +605,7 @@ server <- function(input, output, session) {
         axis.title = element_text(colour = "#333333", face = "bold"),
         plot.margin = margin(12, 17, 12, 9)
       )
-  })
+  }, res = 96)
 }
 
 shinyApp(ui, server)

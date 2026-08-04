@@ -1,7 +1,6 @@
 # ZOS-Stadionrechner für Shinylive bauen
 # Einmalig erforderlich:
 # install.packages("shinylive")
-library(S7)
 
 if (!requireNamespace("shinylive", quietly = TRUE)) {
   stop("Das Paket 'shinylive' fehlt. Bitte zuerst install.packages('shinylive') ausführen.")
