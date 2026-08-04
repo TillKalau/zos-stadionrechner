@@ -1,3 +1,7 @@
+if (FALSE) {
+  library(S7)
+}
+
 library(shiny)
 library(ggplot2)
 library(scales)
