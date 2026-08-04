@@ -18,6 +18,7 @@
     "BlauWeiss_4630 gewinnt gerade ein Spiel...",
     "Phaeton und Pape machen gerade den Deal des Jahres...",
 "Max arbeitet gerade mit KI..."
+"Guardiola.#4 sammelt gerade Muscheln in Portugal...",
   ];
 
   const setStatus = (text) => {
