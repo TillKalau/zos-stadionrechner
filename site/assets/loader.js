@@ -6,7 +6,7 @@
   const status = document.getElementById("loading-status");
   const startedAt = Date.now();
   let finished = false;
-  let lastTextIndex = -1;
+  let textQueue = [];
 
   const loadingTexts = [
     "Molle schreibt gerade eine News...",
@@ -23,22 +23,27 @@
     if (status) status.textContent = text;
   };
 
+  const refillTextQueue = () => {
+    textQueue = [...loadingTexts];
+
+    for (let i = textQueue.length - 1; i > 0; i -= 1) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [textQueue[i], textQueue[j]] = [textQueue[j], textQueue[i]];
+    }
+  };
+
   const showRandomLoadingText = () => {
     if (finished || loadingTexts.length === 0) return;
 
-    let nextIndex = 0;
-    if (loadingTexts.length > 1) {
-      do {
-        nextIndex = Math.floor(Math.random() * loadingTexts.length);
-      } while (nextIndex === lastTextIndex);
+    if (textQueue.length === 0) {
+      refillTextQueue();
     }
 
-    lastTextIndex = nextIndex;
-    setStatus(loadingTexts[nextIndex]);
+    setStatus(textQueue.shift());
   };
 
   showRandomLoadingText();
-  const textTimer = window.setInterval(showRandomLoadingText, 2300);
+  const textTimer = window.setInterval(showRandomLoadingText, 4300);
 
   const reveal = () => {
     if (finished) return;
