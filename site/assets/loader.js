@@ -6,21 +6,47 @@
   const status = document.getElementById("loading-status");
   const startedAt = Date.now();
   let finished = false;
+  let lastTextIndex = -1;
+
+  const loadingTexts = [
+    "Molle schreibt gerade eine News...",
+    "labbes lebt gerade unseren Traum...",
+    "lolo erstellt gerade eine Auktion...",
+    "Powl studiert gerade das Regelwerk...",
+    "Jesse zählt gerade Geld...",
+    "Olof verpflichtet gerade einen Schweden...",
+    "BlauWeiss_4630 gewinnt gerade ein Spiel...",
+    "Phaeton und Pape machen gerade den Deal des Jahres..."
+  ];
 
   const setStatus = (text) => {
     if (status) status.textContent = text;
   };
 
+  const showRandomLoadingText = () => {
+    if (finished || loadingTexts.length === 0) return;
+
+    let nextIndex = 0;
+    if (loadingTexts.length > 1) {
+      do {
+        nextIndex = Math.floor(Math.random() * loadingTexts.length);
+      } while (nextIndex === lastTextIndex);
+    }
+
+    lastTextIndex = nextIndex;
+    setStatus(loadingTexts[nextIndex]);
+  };
+
+  showRandomLoadingText();
+  const textTimer = window.setInterval(showRandomLoadingText, 2300);
+
   const reveal = () => {
     if (finished) return;
     finished = true;
-    setStatus("Berechnung ist bereit.");
+    window.clearInterval(textTimer);
 
-    // Zuerst die fertige App unter dem weiterhin deckenden Overlay einblenden.
     frame?.classList.add("is-ready");
 
-    // Erst danach das Overlay ausblenden. Dadurch sind auch mobil keine
-    // Shinylive-Waben oder weißen Zwischenzustände sichtbar.
     window.setTimeout(() => {
       overlay?.classList.add("is-hidden");
       overlay?.setAttribute("aria-busy", "false");
@@ -55,15 +81,8 @@
     }
   };
 
-  frame?.addEventListener("load", () => {
-    setStatus("Rechenmodell wird gestartet …");
-  });
-
   const poll = window.setInterval(() => {
     const elapsed = Date.now() - startedAt;
-
-    if (elapsed > 4200) setStatus("Diagramm und Eingaben werden geladen …");
-    if (elapsed > 10500) setStatus("Fast geschafft …");
 
     if (appLooksReady()) {
       window.clearInterval(poll);
@@ -71,8 +90,6 @@
       return;
     }
 
-    // Sicherheitsnetz für Browser, die den Bildstatus anders melden.
-    // Das iframe bleibt bis dahin unsichtbar, sodass keine Waben durchscheinen.
     if (elapsed > 45000) {
       window.clearInterval(poll);
       reveal();

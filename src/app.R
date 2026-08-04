@@ -508,8 +508,8 @@ server <- function(input, output, session) {
       class = "result-text",
       HTML(
         paste0(
-          "Basierend auf den hinterlegten Eingaben erreicht die Investition von <strong>", format_pound(input$baukosten),
-          "</strong> den rechnerischen Break-even nach <strong>",
+          "Die Investition von <strong>", format_pound(input$baukosten),
+          "</strong> erreicht den rechnerischen Break-even nach <strong>",
           format_number_de(x$break_even, 2), " Saisons</strong>. ",
           "Damit ist der Stadionausbau nach <strong>", x$volle_saisons,
           " vollen ", saison_wort, "</strong> erstmals vollständig refinanziert. ",

@@ -53,12 +53,14 @@ body { overflow: hidden; background: #e5e5e5; font-family: Arial, Helvetica, san
   box-shadow: 0 12px 38px rgba(29,53,71,.22), 0 2px 7px rgba(0,0,0,.12);
 }
 
-.stadium-mark { width: 132px; margin: 0 auto 12px; }
-.stadium-mark svg { width: 100%; height: auto; overflow: visible; }
-.stadium-outer { fill: var(--blue); }
-.stadium-inner { fill: #eef1f3; stroke: var(--blue-dark); stroke-width: 3; }
-.field { fill: #6d9b61; stroke: #547a4d; stroke-width: 2; }
-.field-line { fill: none; stroke: rgba(255,255,255,.88); stroke-width: 1.5; }
+.stadium-mark { width: 104px; margin: 0 auto 16px; }
+.stadium-mark img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+  box-shadow: 0 6px 18px rgba(39,71,94,.18);
+}
 
 h1 { margin: 0; color: var(--blue-dark); font-size: clamp(24px, 5vw, 32px); line-height: 1.1; text-shadow: 0 1px 0 #fff; }
 h1 span { color: var(--orange); }
@@ -78,7 +80,7 @@ p { margin: 12px 0 18px; color: #666; font-size: 13px; }
 @media (max-width: 520px) {
   .loading-overlay { padding: 12px; }
   .loader-card { padding: 25px 20px 22px; }
-  .stadium-mark { width: 112px; }
+  .stadium-mark { width: 92px; }
   .loader-meta { flex-direction: column; gap: 4px; }
 }
 
