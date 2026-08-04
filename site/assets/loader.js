@@ -82,7 +82,7 @@
         plotImage.naturalHeight > 0
       );
 
-      return Boolean(main && plotOutput && plotReady && !busy);
+      return Boolean(main && !busy);
     } catch (_) {
       return false;
     }
